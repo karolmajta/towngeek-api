@@ -13,6 +13,7 @@ setup(
         'towngeek',
 
         'towngeek.commons',
+        'towngeek.commons.permissions',
 
         'towngeek.locations',
         'towngeek.locations.api',
@@ -29,8 +30,6 @@ setup(
         'towngeek.ratings.serializers',
     ],
 
-    # Project uses reStructuredText, so ensure that the docutils get
-    # installed or upgraded on the target machine
     install_requires=[],
 
     author="Karol Majta",

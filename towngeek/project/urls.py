@@ -5,6 +5,7 @@ admin.autodiscover()
 
 import towngeek.locations.urls
 import towngeek.qa.urls
+import towngeek.ratings.urls
 
 urlpatterns = patterns('',
     # Examples:
@@ -13,6 +14,7 @@ urlpatterns = patterns('',
 
     url(r'^locations/', include(towngeek.locations.urls)),
     url(r'^qa/', include(towngeek.qa.urls)),
+    url(r'^ratings/', include(towngeek.ratings.urls)),
 
     url(r'^admin/', include(admin.site.urls)),
 )

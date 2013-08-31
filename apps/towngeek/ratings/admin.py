@@ -1,3 +1,6 @@
 from django.contrib import admin
 
-# Register your models here.
+from towngeek.ratings.models import Bookmark, Vote
+
+admin.site.register(Bookmark)
+admin.site.register(Vote)
