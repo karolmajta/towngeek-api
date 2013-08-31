@@ -36,6 +36,10 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'south',
+    'rest_framework',
+    'towngeek.core',
 )
 
 MIDDLEWARE_CLASSES = (
