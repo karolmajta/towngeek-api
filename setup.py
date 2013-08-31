@@ -1,19 +1,18 @@
 # -*- coding: utf-8 -*-
-import sys
-import subprocess
-
 from setuptools import setup
 
 
 setup(
-    name="ddcs-server-stack",
+    name="towngeek",
     version="0.1",
     package_dir={
-        'towngeek.core': 'apps/core',
+        '': 'apps',
     },
     package_data={},
     packages=[
+        'towngeek',
         'towngeek.core',
+        'towngeek.core.api',
     ],
 
     # Project uses reStructuredText, so ensure that the docutils get
