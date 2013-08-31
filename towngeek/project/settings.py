@@ -38,10 +38,11 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
 
     'south',
-    'rest_framework',
+    'rest_framework.authtoken',
 
     'towngeek.locations',
     'towngeek.qa',
+    'towngeek.ratings',
 )
 
 MIDDLEWARE_CLASSES = (

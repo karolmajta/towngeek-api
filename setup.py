@@ -16,9 +16,17 @@ setup(
 
         'towngeek.locations',
         'towngeek.locations.api',
+        'towngeek.locations.migrations',
 
         'towngeek.qa',
         'towngeek.qa.api',
+        'towngeek.qa.migrations',
+        'towngeek.qa.serializers',
+
+        'towngeek.ratings',
+        'towngeek.ratings.api',
+        'towngeek.ratings.migrations',
+        'towngeek.ratings.serializers',
     ],
 
     # Project uses reStructuredText, so ensure that the docutils get
