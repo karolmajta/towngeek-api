@@ -11,8 +11,14 @@ setup(
     package_data={},
     packages=[
         'towngeek',
-        'towngeek.core',
-        'towngeek.core.api',
+
+        'towngeek.commons',
+
+        'towngeek.locations',
+        'towngeek.locations.api',
+
+        'towngeek.qa',
+        'towngeek.qa.api',
     ],
 
     # Project uses reStructuredText, so ensure that the docutils get

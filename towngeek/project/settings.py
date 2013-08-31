@@ -39,7 +39,9 @@ INSTALLED_APPS = (
 
     'south',
     'rest_framework',
-    'towngeek.core',
+
+    'towngeek.locations',
+    'towngeek.qa',
 )
 
 MIDDLEWARE_CLASSES = (
