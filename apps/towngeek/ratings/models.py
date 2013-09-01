@@ -1,19 +1,42 @@
-from django.db import models
+from django.db import models, transaction
 from django.contrib.auth import get_user_model
 User = get_user_model()
-from django.forms import ValidationError
 
+from towngeek.commons import aggregations
+from towngeek.commons.handlers import track
 from towngeek.qa.models import Question, Answer
 
 
 class Bookmark(models.Model):
 
+    class Meta:
+
+        unique_together = (
+            ('issued_by', 'question')
+        )
+
     issued_by = models.ForeignKey(User, related_name='bookmarks')
     question = models.ForeignKey(Question, related_name='bookmarks')
     issued_at = models.DateTimeField(auto_now_add=True)
 
+    @transaction.atomic()
+    def save(self, *args, **kwargs):
+        Bookmark.objects.filter(
+            issued_by=self.issued_by,
+            question=self.question
+        ).delete()
+        super(Bookmark, self).save(*args, **kwargs)
+
+track.count(Bookmark, 'question', 'bookmarks', 'bookmark_count')
+
 
 class Vote(models.Model):
+
+    class Meta:
+
+        unique_together = (
+            ('issued_by', 'answer')
+        )
 
     VALUE_CHOICES = (
         (1, "UP"),
@@ -25,9 +48,13 @@ class Vote(models.Model):
     issued_at = models.DateTimeField(auto_now_add=True)
     value = models.PositiveSmallIntegerField(choices=VALUE_CHOICES)
 
-    def clean(self):
-        if self.issued_by != self.answer.issued_by:
-            raise ValidationError(
-                "You are not allowed to vote on your own answers.",
-                code='invalid',
-            )
+    @transaction.atomic()
+    def save(self, *args, **kwargs):
+        Vote.objects.filter(
+            issued_by=self.issued_by,
+            answer=self.answer
+        ).delete()
+        super(Vote, self).save(*args, **kwargs)
+
+track.aggregation(
+    Vote, 'answer', 'votes', 'value', 'score', aggregations.Sum, empty=0)

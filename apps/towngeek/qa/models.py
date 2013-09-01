@@ -11,6 +11,10 @@ class Question(models.Model):
     issued_at = models.DateTimeField(auto_now_add=True)
     city = models.ForeignKey(City, related_name='questions')
     text = models.TextField()
+    bookmark_count = models.IntegerField(default=0)
+
+    def __unicode__(self):
+        return self.text[:100]
 
 
 class Answer(models.Model):
@@ -19,3 +23,7 @@ class Answer(models.Model):
     issued_at = models.DateTimeField(auto_now_add=True)
     question = models.ForeignKey(Question, related_name='answers')
     text = models.TextField()
+    score = models.IntegerField(default=0)
+
+    def __unicode__(self):
+        return self.text[:100]
