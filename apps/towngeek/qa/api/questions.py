@@ -17,7 +17,7 @@ class QuestionDetailView(WrappedResultMixin, RetrieveAPIView):
 
 class QuestionListCreateView(WrappedResultMixin, ListCreateAPIView):
 
-    queryset = Question.objects.order_by('-issued_by').all()
+    queryset = Question.objects.order_by('-bookmark_count').all()
     serializer_class = QuestionSerializer
 
     authentication_classes = (TokenAuthentication,)

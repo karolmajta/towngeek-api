@@ -67,7 +67,7 @@ class AggrUpdater(object):
             self.field,
             self.to,
             self.aggregation],
-            empty=self.empty,
+            {'empty': self.empty},
             countdown=self.countdown
         )
 
@@ -88,7 +88,7 @@ class track(object):
             field,
             to,
             aggregation,
-            empty,
+            empty=None,
             dt=0
         ):
         updater = AggrUpdater(
