@@ -1,0 +1,8 @@
+Hello {{ full_name }}
+
+
+Welcome to the TownGeek Community!
+
+Click <a href="http://towngeek.pl">towngeek.pl</a>
+
+Your login is {{ username }}. You are never gonna use it...

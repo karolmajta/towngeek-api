@@ -2,6 +2,7 @@
 import celery
 
 import towngeek.commons.aggregations as aggr
+import towngeek.commons.mailing as mailing
 
 
 @celery.task
@@ -12,3 +13,8 @@ def aggregate(*args, **kwargs):
 @celery.task
 def count(*args, **kwargs):
     aggr.count(*args, **kwargs)
+
+
+@celery.task
+def send_mail(*args, **kwargs):
+    mailing.send_email(*args, **kwargs)
