@@ -27,7 +27,7 @@ class Bookmark(models.Model):
         ).delete()
         super(Bookmark, self).save(*args, **kwargs)
 
-track.count(Bookmark, 'question', 'bookmarks', 'bookmark_count')
+track.count(Bookmark, 'question', 'bookmarks', 'bookmark_count', dt=5)
 
 
 class Vote(models.Model):
@@ -57,4 +57,4 @@ class Vote(models.Model):
         super(Vote, self).save(*args, **kwargs)
 
 track.aggregation(
-    Vote, 'answer', 'votes', 'value', 'score', aggregations.Sum, empty=0)
+    Vote, 'answer', 'votes', 'value', 'score', aggregations.Sum, empty=0, dt=5)

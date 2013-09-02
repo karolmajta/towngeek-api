@@ -8,5 +8,5 @@ class AnswerSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Answer
-        fields = ('id', 'issued_at', 'issued_by', 'question', 'text')
-        read_only_fields = ('id', 'issued_at', 'issued_by')
+        fields = ('id', 'issued_at', 'issued_by', 'question', 'text', 'score')
+        read_only_fields = ('id', 'issued_at', 'issued_by', 'score')

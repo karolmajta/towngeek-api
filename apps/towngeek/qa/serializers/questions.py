@@ -8,5 +8,11 @@ class QuestionSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Question
-        fields = ('id', 'issued_at', 'issued_by', 'city', 'text')
-        read_only_fields = ('id', 'issued_at', 'issued_by')
+        fields = (
+            'id',
+            'issued_at',
+            'issued_by',
+            'city', 'text',
+            'bookmark_count'
+        )
+        read_only_fields = ('id', 'issued_at', 'issued_by', 'bookmark_count')
