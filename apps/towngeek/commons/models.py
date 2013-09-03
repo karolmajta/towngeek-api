@@ -10,6 +10,7 @@ from django.contrib.auth import get_user_model
 User = get_user_model()
 
 import towngeek.commons.tasks as tasks
+from towngeek.commons.conf import settings
 
 
 def on_user_save(*args, **kwargs):
@@ -17,7 +18,7 @@ def on_user_save(*args, **kwargs):
     created = kwargs['created']
     if created:
         tasks.send_mail.delay(
-            'hello@towngeek.pl',
+            settings.REPLY_TO,
             user.email,
             'Welcome to Towngeek!',
             'welcome',
