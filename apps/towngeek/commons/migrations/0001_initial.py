@@ -9,12 +9,18 @@ class Migration(SchemaMigration):
 
     def forwards(self, orm):
         pass
+        #db.create_unique('auth_user', ['email'])
+        #db.alter_column(
+            #'auth_user',
+            #'username',
+            #models.CharField(max_length=200)
+        #)
 
     def backwards(self, orm):
-        pass
+        raise RuntimeError("Cannot reverse this migration")
 
     models = {
-        
+
     }
 
     complete_apps = ['commons']
