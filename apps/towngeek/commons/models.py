@@ -13,7 +13,6 @@ import towngeek.commons.tasks as tasks
 
 
 def on_user_save(*args, **kwargs):
-    print "user_on_save"
     user = kwargs['instance']
     created = kwargs['created']
     if created:

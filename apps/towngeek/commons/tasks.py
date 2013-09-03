@@ -18,3 +18,8 @@ def count(*args, **kwargs):
 @celery.task
 def send_mail(*args, **kwargs):
     mailing.send_email(*args, **kwargs)
+
+
+@celery.task
+def deactivate_for_emails(*args, **kwargs):
+    mailing.deactivate_for_emails(*args, **kwargs)
