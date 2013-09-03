@@ -156,6 +156,11 @@ EMAIL_PORT = file_config['email_port']
 EMAIL_HOST_USER = file_config['email_user']
 EMAIL_HOST_PASSWORD = file_config['email_password']
 
+# project templates
+TEMPLATE_DIRS = (
+    os.path.join(BASE_DIR, 'templates'),
+)
+
 # Celery
 BROKER_URL = file_config['broker_url']
 
