@@ -4,7 +4,7 @@ from setuptools import setup
 
 setup(
     name="towngeek",
-    version="0.1",
+    version="0.1.0",
     package_dir={
         '': 'apps',
     },
@@ -13,7 +13,9 @@ setup(
         'towngeek',
 
         'towngeek.commons',
-        'towngeek.commons.permissions',
+        'towngeek.commons.api',
+        'towngeek.commons.migrations',
+        'towngeek.commons.serializers',
 
         'towngeek.locations',
         'towngeek.locations.api',
