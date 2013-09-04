@@ -10,29 +10,32 @@ import towngeek.commons.tasks
 
 
 class MalformedStreamError(APIException):
-    status = 400
+    status_code = 400
     detail = "Could not read request stream."
 
 
 class InvalidFormatError(APIException):
-    status = 400
+    status_code = 400
     detail = "Could not parse request as JSON."
 
 
 class NotAListError(APIException):
-    status = 400
+    status_code = 400
     detaul = "Expecting JSON list."
 
 
 class OnMandrillBounce(APIView):
 
+    def head(self, request):
+        return Response()
+
     def post(self, request):
+#        try:
+#            raw_body = request.stream.read()
+#        except:
+#            raise MalformedStreamError()
         try:
-            raw_body = request.stream.read()
-        except:
-            raise MalformedStreamError()
-        try:
-            l = json.loads(raw_body)
+            l = json.loads(request.POST['mandrill_events'])
         except:
             raise InvalidFormatError()
         if not hasattr(l, '__iter__'):

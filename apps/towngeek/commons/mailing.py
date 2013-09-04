@@ -29,7 +29,7 @@ def deactivate_for_emails(emails=None):
             user.is_active = False
             email_username, email_domain = email.split(u'@')
             suffix = unicode(uuid.uuid4())
-            new_username = (email_username + u'+' + suffix)[:30]
+            new_username = (email_username + u'+' + suffix)[:100]
             new_email = '@'.join([new_username, email_domain])
             user.email = new_email
             user.save()
