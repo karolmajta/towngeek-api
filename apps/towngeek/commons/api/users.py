@@ -52,7 +52,6 @@ class UserListCreateView(WrappedResultMixin, ListCreateAPIView):
     def pre_save(self, obj):
         generator = self.__class__.username_generator
         obj.username = generator.uuid4()
-        obj.set_unusable_password()
 
     def create(self, *args, **kwargs):
         try:
@@ -66,5 +65,9 @@ class UserListCreateView(WrappedResultMixin, ListCreateAPIView):
         return result
 
     def post_save(self, obj, created=False):
+        print "post_save"
+        print created
         if created:
+            print "saving"
             Token.objects.create(user=obj)
+            print "saved"
