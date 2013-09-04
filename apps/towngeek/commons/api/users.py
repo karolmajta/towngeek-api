@@ -65,9 +65,6 @@ class UserListCreateView(WrappedResultMixin, ListCreateAPIView):
         return result
 
     def post_save(self, obj, created=False):
-        print "post_save"
         print created
         if created:
-            print "saving"
             Token.objects.create(user=obj)
-            print "saved"
