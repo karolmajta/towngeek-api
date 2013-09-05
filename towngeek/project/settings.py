@@ -34,9 +34,12 @@ try:
         'default_db_host': config.get("django:databases", "default-database-host"),
         'default_db_port': config.get("django:databases", "default-database-port"),
 
-        'allowed_hosts': config.get("django:server", "allowed-hosts") \
-                               .replace(" ", "") \
+        'allowed_hosts': config.get("django:server", "allowed-hosts")
+                               .replace(" ", "")
                                .split(","),
+        'cors_allow_origin': config.get("django:server", "cors-allow-origin")
+                                .replace(" ", "")
+                                .split(","),
         'server_secret': config.get("django:server", "server-secret"),
 
         'broker_url': config.get("django:queue", "broker-url"),
@@ -93,6 +96,7 @@ INSTALLED_APPS = (
     'south',
     'rest_framework',
     'rest_framework.authtoken',
+    'corsheaders',
     'djcelery',
 
     'towngeek.commons',
@@ -102,12 +106,9 @@ INSTALLED_APPS = (
 )
 
 MIDDLEWARE_CLASSES = (
-    'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 )
 
 ROOT_URLCONF = 'project.urls'
@@ -160,6 +161,14 @@ EMAIL_HOST_PASSWORD = file_config['email_password']
 TEMPLATE_DIRS = (
     os.path.join(BASE_DIR, 'templates'),
 )
+
+# CORS
+if len(file_config['cors_allow_origin']) and file_config['cors_allow_origin'][0] == '*':
+    CORS_ORIGIN_WHITELIST = ()
+    CORS_ORIGIN_ALLOW_ALL = True
+else:
+    CORS_ORIGIN_WHITELIST = file_config['cors_allow_origin']
+    CORS_ORIGIN_ALLOW_ALL = False
 
 # Celery
 BROKER_URL = file_config['broker_url']
