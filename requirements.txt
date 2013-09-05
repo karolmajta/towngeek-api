@@ -3,3 +3,4 @@ South>=0.8.2
 djangorestframework>=2.3.7
 -e git+https://github.com/karolmajta/filthy-tricks.git@9b00823b3c783b87b2386871b74aa25430d6e2b4#egg=filthy-tricks
 django-celery>=3.0.21
+django-cors-headers>=0.11
