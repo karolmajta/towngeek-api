@@ -22,6 +22,8 @@ class APIRoot(APIView):
             {'url': "/commons/token", 'resource': "Token (authentication)"},
             {'url': "/locations/cities/", 'resource': "City list"},
             {'url': "/locations/cities/:id", 'resource': "City details"},
+            {'url': "/locations/city-knowledges/", 'resource': "City Knowledge list"},
+            {'url': "/locations/city-knowledges/:id", 'resource': "City Knowledge details"},
             {'url': "/qa/questions/", 'resource': "Question list"},
             {'url': "/qa/questions/:id", 'resource': "Question details"},
             {'url': "/qa/answers/", 'resource': "Answer list"},

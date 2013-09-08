@@ -47,7 +47,7 @@ class UserListCreateView(WrappedResultMixin, ListCreateAPIView):
         if self.request.method in permissions.SAFE_METHODS:
             return User.objects.all()
         else:
-            return User.objects.select_relatet('token').all()
+            return User.objects.select_related('token').all()
 
     def pre_save(self, obj):
         generator = self.__class__.username_generator

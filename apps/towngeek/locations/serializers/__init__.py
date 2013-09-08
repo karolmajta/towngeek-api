@@ -1,0 +1,1 @@
+from cityknowledges import CityKnowledgeSerializer

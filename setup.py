@@ -20,6 +20,7 @@ setup(
         'towngeek.locations',
         'towngeek.locations.api',
         'towngeek.locations.migrations',
+        'towngeek.locations.serializers',
 
         'towngeek.qa',
         'towngeek.qa.api',
