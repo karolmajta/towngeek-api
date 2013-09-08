@@ -4,7 +4,7 @@ from setuptools import setup
 
 setup(
     name="towngeek",
-    version="0.1.4",
+    version="0.1.5",
     package_dir={
         '': 'apps',
     },

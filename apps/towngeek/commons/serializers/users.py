@@ -10,8 +10,8 @@ class SafeUserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('id', 'username', 'first_name', 'last_name')
-        read_only_fields = ('id', 'username', 'first_name', 'last_name')
+        fields = ('id', 'first_name', 'last_name')
+        read_only_fields = ('id', 'first_name', 'last_name')
 
 
 class PasswordField(fields.WritableField):

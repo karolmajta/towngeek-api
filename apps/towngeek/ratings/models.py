@@ -40,6 +40,7 @@ class Vote(models.Model):
 
     VALUE_CHOICES = (
         (1, "UP"),
+        (0, "NONE"),
         (-1, "DOWN"),
     )
 
