@@ -3,7 +3,7 @@ from rest_framework.generics import ListCreateAPIView, RetrieveAPIView
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 
-from filthy.views import WrappedResultMixin
+from filthy.views import WrappedResultMixin, FilterMixin
 
 from towngeek.qa.models import Answer
 from towngeek.qa.serializers.answers import AnswerSerializer
@@ -15,7 +15,7 @@ class AnswerDetailView(WrappedResultMixin, RetrieveAPIView):
     serializer_class = AnswerSerializer
 
 
-class AnswerListCreateView(WrappedResultMixin, ListCreateAPIView):
+class AnswerListCreateView(WrappedResultMixin, ListCreateAPIView, FilterMixin):
 
     queryset = Answer.objects.order_by('-issued_at', '-score').all()
     serializer_class = AnswerSerializer
@@ -24,6 +24,10 @@ class AnswerListCreateView(WrappedResultMixin, ListCreateAPIView):
     permission_classes = (IsAuthenticatedOrReadOnly,)
 
     paginate_by = 10
+
+    filters = {
+        'question': ('question', lambda val: int(val)),
+    }
 
     def pre_save(self, obj):
         obj.issued_by = self.request.user
