@@ -19,7 +19,7 @@ class CityKnowledge(models.Model):
     city = models.ForeignKey(City, related_name='known_by')
 
     def __unicode__(self):
-        return u"{0} {1} @ {1}".format(
+        return u"{0} {1} @ {2}".format(
             self.user.first_name,
             self.user.last_name,
             self.city

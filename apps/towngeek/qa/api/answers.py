@@ -11,13 +11,16 @@ from towngeek.qa.serializers.answers import AnswerSerializer
 
 class AnswerDetailView(WrappedResultMixin, RetrieveAPIView):
 
-    queryset = Answer.objects.all()
+    queryset = Answer.objects.select_related('issued_by').all()
     serializer_class = AnswerSerializer
 
 
 class AnswerListCreateView(WrappedResultMixin, FilterMixin, ListCreateAPIView):
 
-    queryset = Answer.objects.order_by('-issued_at', '-score').all()
+    queryset = Answer.objects \
+        .order_by('-score', '-issued_at') \
+        .select_related('issued_by') \
+        .all()
     serializer_class = AnswerSerializer
 
     authentication_classes = (TokenAuthentication,)
