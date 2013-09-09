@@ -15,7 +15,7 @@ class AnswerDetailView(WrappedResultMixin, RetrieveAPIView):
     serializer_class = AnswerSerializer
 
 
-class AnswerListCreateView(WrappedResultMixin, ListCreateAPIView, FilterMixin):
+class AnswerListCreateView(WrappedResultMixin, FilterMixin, ListCreateAPIView):
 
     queryset = Answer.objects.order_by('-issued_at', '-score').all()
     serializer_class = AnswerSerializer
