@@ -17,7 +17,7 @@ class AnswerDetailView(WrappedResultMixin, RetrieveAPIView):
 
 class AnswerListCreateView(WrappedResultMixin, ListCreateAPIView):
 
-    queryset = Answer.objects.order_by('-score').all()
+    queryset = Answer.objects.order_by('-issued_at', '-score').all()
     serializer_class = AnswerSerializer
 
     authentication_classes = (TokenAuthentication,)
