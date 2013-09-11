@@ -28,7 +28,10 @@ class TokenDetailView(APIView):
         if not credential_serializer.is_valid():
             raise InvalidQueryParams()
         safe_qp = credential_serializer.object
-        user = User.objects.get(email=safe_qp['email'])
+        try:
+            user = User.objects.get(email=safe_qp['email'])
+        except User.DoesNotExist:
+            raise InvalidCredentials()
         if not user.check_password(safe_qp['password']):
             raise InvalidCredentials()
         data = {'result': TokenSerializer(user.auth_token).data}
