@@ -20,7 +20,7 @@ from towngeek.commons.serializers.users import SafeUserSerializer, \
 
 class UserDetailView(WrappedResultMixin, RetrieveAPIView):
 
-    queryset = User.objects.all()
+    queryset = User.objects.filter(auth_token__isnull=False)
     serializer_class = SafeUserSerializer
 
 
@@ -45,9 +45,9 @@ class UserListCreateView(WrappedResultMixin, ListCreateAPIView):
 
     def get_queryset(self):
         if self.request.method in permissions.SAFE_METHODS:
-            return User.objects.all()
+            return User.objects.filter(auth_token__isnull=False).all()
         else:
-            return User.objects.select_related('token').all()
+            return User.objects.filter(auth_token__isnull=False).select_related('token').all()
 
     def pre_save(self, obj):
         generator = self.__class__.username_generator
