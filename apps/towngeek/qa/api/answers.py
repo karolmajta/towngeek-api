@@ -14,6 +14,9 @@ class AnswerDetailView(WrappedResultMixin, RetrieveAPIView):
     queryset = Answer.objects.select_related('issued_by').all()
     serializer_class = AnswerSerializer
 
+    authentication_classes = (TokenAuthentication,)
+    permission_classes = (IsAuthenticatedOrReadOnly,)
+
 
 class AnswerListCreateView(WrappedResultMixin, FilterMixin, ListCreateAPIView):
 

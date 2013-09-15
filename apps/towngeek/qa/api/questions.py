@@ -16,8 +16,14 @@ class QuestionDetailView(WrappedResultMixin, RetrieveAPIView):
     queryset = Question.objects.select_related('issued_by', 'city').all()
     serializer_class = QuestionSerializer
 
+    authentication_classes = (TokenAuthentication,)
+    permission_classes = (IsAuthenticatedOrReadOnly,)
 
-class QuestionListCreateView(FilterMixin, WrappedResultMixin, ListCreateAPIView):
+
+class QuestionListCreateView(
+        FilterMixin,
+        WrappedResultMixin,
+        ListCreateAPIView):
 
     queryset = Question.objects \
         .order_by('-issued_at', '-bookmark_count') \
