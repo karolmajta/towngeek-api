@@ -4,7 +4,7 @@ from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from rest_framework import permissions
 
-from filthy.views import WrappedResultMixin
+from filthy.views import WrappedResultMixin, FilterMixin
 
 from towngeek.qa.models import Question
 from towngeek.qa.serializers.questions import QuestionSerializer, \
@@ -17,7 +17,7 @@ class QuestionDetailView(WrappedResultMixin, RetrieveAPIView):
     serializer_class = QuestionSerializer
 
 
-class QuestionListCreateView(WrappedResultMixin, ListCreateAPIView):
+class QuestionListCreateView(FilterMixin, WrappedResultMixin, ListCreateAPIView):
 
     queryset = Question.objects \
         .order_by('-issued_at', '-bookmark_count') \
@@ -28,6 +28,10 @@ class QuestionListCreateView(WrappedResultMixin, ListCreateAPIView):
     permission_classes = (IsAuthenticatedOrReadOnly,)
 
     paginate_by = 10
+
+    filters = {
+        'city': ('city_id', lambda val: int(val)),
+    }
 
     def get_serializer_class(self):
         if self.request.method in permissions.SAFE_METHODS:

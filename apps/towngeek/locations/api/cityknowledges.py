@@ -21,7 +21,7 @@ class CityKnowledgeDetailView(WrappedResultMixin, RetrieveDestroyAPIView):
     permission_classes = (IsObjectOwner('user', allow_read=True),)
 
 
-class CityKnowledgeListCreateView(FilterMixin, ListCreateAPIView):
+class CityKnowledgeListCreateView(WrappedResultMixin, FilterMixin, ListCreateAPIView):
 
     queryset = CityKnowledge.objects.select_related('user', 'city')
 
