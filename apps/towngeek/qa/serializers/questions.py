@@ -31,8 +31,9 @@ class QuestionSerializer(serializers.ModelSerializer):
             'text',
             'bookmark_count',
             'is_bookmarked',
+            'answer_count',
         )
-        read_only_fields = ('id', 'issued_at', 'bookmark_count')
+        read_only_fields = ('id', 'issued_at', 'bookmark_count', 'answer_count')
 
     issued_by = SafeUserSerializer(read_only=True)
     city = CitySerializer()

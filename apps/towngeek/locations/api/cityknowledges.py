@@ -42,3 +42,4 @@ class CityKnowledgeListCreateView(FilterMixin, ListCreateAPIView):
             return CityKnowledgeSerializer
         else:
             return WritableCityKnowledgeSerializer
+
