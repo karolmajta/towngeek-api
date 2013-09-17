@@ -47,7 +47,7 @@ class Vote(models.Model):
     issued_by = models.ForeignKey(User, related_name='votes')
     answer = models.ForeignKey(Answer, related_name='votes')
     issued_at = models.DateTimeField(auto_now_add=True)
-    value = models.PositiveSmallIntegerField(choices=VALUE_CHOICES)
+    value = models.SmallIntegerField(choices=VALUE_CHOICES)
 
     @transaction.atomic()
     def save(self, *args, **kwargs):
